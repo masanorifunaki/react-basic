@@ -1,19 +1,18 @@
 import React from 'react';
 
-export class AddTodo extends React.Component {
+export class Search extends React.Component {
   constructor(props) {
     super(props);
-    // input の内容のための state
     this.state = { title: '' };
   }
 
   render() {
     return (
       <div>
-        <h2>AddTodo</h2>
+        <h2>Find Your GIF</h2>
         <form onSubmit={ this.handleSubmit }>
-          <input type="text" value={ this.state.title } onChange={ this.handleChange }/>
-          <input type="submit" value='Add'/>
+          <input value={ this.state.title } onChange={ this.handleChange }/>
+          <input type="submit" value="Search!!"/>
         </form>
       </div>
     );
@@ -26,7 +25,8 @@ export class AddTodo extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.addTodo(this.state.title);
+    // 受け取ったメソッドを実行し、app の state を変更している
+    this.props.search(this.state.title);
     this.setState({ title: '' });
   };
 }
