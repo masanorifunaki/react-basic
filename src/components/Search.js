@@ -1,18 +1,18 @@
 import React from 'react';
 
-export class Search extends React.Component {
+class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = { title: '' };
   }
 
   render() {
+    const { buttonText } = this.props;
     return (
       <div>
-        <h2>Find Your GIF</h2>
         <form onSubmit={ this.handleSubmit }>
           <input value={ this.state.title } onChange={ this.handleChange }/>
-          <input type="submit" value="Search!!"/>
+          <input type="submit" value={ buttonText }/>
         </form>
       </div>
     );
@@ -25,8 +25,10 @@ export class Search extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    // 受け取ったメソッドを実行し、app の state を変更している
-    this.props.search(this.state.title);
+    const { getUrls } = this.props;
+    getUrls(this.state.title);
     this.setState({ title: '' });
   };
 }
+
+export default Search;
